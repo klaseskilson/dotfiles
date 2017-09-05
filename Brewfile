@@ -4,9 +4,8 @@ update
 # Upgrade any already-installed formulae
 upgrade
 
-install dockutil 
+install dockutil
 install git
-install mongodb
 install mysql
 install node
 install redis
@@ -15,7 +14,9 @@ install python
 install python3
 install zsh
 install yarn
-install maven
+install neovim
+install rbenv
+install autojump
 
 tap caskroom/cask
 install brew-cask
@@ -23,16 +24,24 @@ install brew-cask
 cask install 1password
 cask install appcleaner
 cask install flux
-cask install github-desktop
 cask install google-chrome
 cask install iterm2
-cask install java
-cask install postman
 cask install slack
-cask install skype
 cask install spotify
 cask install sublime-text3
 cask install the-unarchiver
+cask install keybase
+cask install oversight
+cask install steam
+cask install google-photos-backup-and-sync
+cask install telegram
+cask install sequel-pro
+cask install figma
+cask install sketch
+cask install vanilla
+cask install whatsyoursign
+cask install vlc
+cask install postgres
 
 tap homebrew/versions
 

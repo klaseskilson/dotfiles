@@ -1,6 +1,28 @@
 [
-  { "keys": ["ctrl+tab"], "command": "next_view" },
-  { "keys": ["ctrl+shift+tab"], "command": "prev_view" },
-  { "keys": ["super+alt+u"], "command": "unfold" },
-  { "keys": ["super+alt+f"], "command": "fold" },  
+  { "keys": ["super+{"], "command": "prev_view" },
+  { "keys": ["super+}"], "command": "next_view" },
+
+  { "keys": ["super+."], "command": "toggle_comment", "args": { "block": false } },
+  { "keys": ["super+shift+."], "command": "toggle_comment", "args": { "block": true } },
+
+  { "keys": ["ctrl+alt+f"], "command": "side_bar_find_files_path_containing" },
+
+  { "keys": ["ctrl+shift+§"], "command": "focus_neighboring_group", "args": {"forward": false} },
+  { "keys": ["ctrl+§"], "command": "focus_neighboring_group" },
+  { "keys": ["super+enter"], "command": "run_macro_file", "args": {"file": "Packages/User/new-line.sublime-macro"} },
+
+  { "keys": ["ctrl+b"], "command": "goto_definition" },
+  { "keys": ["ctrl+r"], "command": "toggle_spec" },
+
+  { "keys": ["shift+alt+9"], "command": "insert", "args": {"characters": "}"} },
+
+  { "keys": ["alt+up"], "command": "expand_region" },
+  {
+    "keys": ["alt+down"],
+    "command": "expand_region",
+    "args": {"undo": true},
+    "context": [{ "key": "expand_region_soft_undo" }]
+  },
+
+  { "keys": ["super+backspace"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} }
 ]

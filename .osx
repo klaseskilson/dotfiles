@@ -35,3 +35,13 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 # Use list view in all Finder windows by default
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
 defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
+
+# Set location for new screen shots
+defaults write com.apple.screencapture location ~/Screenshots
+
+# Make text selectable in Quick Look
+defaults write com.apple.finder QLEnableTextSelection -bool TRUE
+
+# Restart services
+killall SystemUIServer
+killall Finder

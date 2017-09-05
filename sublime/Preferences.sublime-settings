@@ -1,31 +1,42 @@
 {
+	"bold_folder_labels": true,
+	"caret_extra_width": 1,
+	"caret_style": "phase",
+	"color_scheme": "Packages/User/SublimeLinter/base16-ocean.dark (SL).tmTheme",
+	"default_line_ending": "unix",
+	"dictionary": "Packages/Language - English/en_GB.dic",
+	"ensure_newline_at_eof_on_save": true,
+	"findreplace_small": true,
 	"always_show_path_on_tabs": true,
-	"color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
-	"file_exclude_patterns":
-	[
-		"npm-debug.log",
-		"yarn.lock"
-	],
 	"folder_exclude_patterns":
 	[
-		"node_modules",
-		"tmp",
-		"bin",
+		".svn",
 		".git",
-		".idea",
-		"__pycache__",
-		"*.map",
-		"env"
+		".hg",
+		"CVS",
+		".meteor",
+		".idea"
 	],
-	"font_size": 13,
-	"hot_exit": false,
+	"font_face": "Input Mono",
+	"font_size": 12,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
 		"Vintage"
 	],
-	"open_files_in_new_window": false,
-	"remember_open_files": false,
-	"show_full_path": true,
+	"line_padding_bottom": 3,
+	"line_padding_top": 3,
+	"rulers":
+	[
+		80,
+		120
+	],
+	"scroll_past_end": true,
+	"spacegray_fileicons": true,
+	"spacegray_tabs_large": true,
 	"tab_size": 2,
-	"translate_tabs_to_spaces": true
+	"theme": "Spacegray.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true
 }
