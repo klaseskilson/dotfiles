@@ -16,6 +16,7 @@ install zsh
 install yarn
 install neovim
 install rbenv
+install tree
 install autojump
 
 tap caskroom/cask
