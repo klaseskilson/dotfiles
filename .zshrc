@@ -19,7 +19,7 @@ plugins=(git osx)
 # User configuration
 
 source $ZSH/oh-my-zsh.sh
-source ./paths.sh
+source ~/Development/dotfiles/paths.sh
 
 # Git aliases
 alias ga="git add"

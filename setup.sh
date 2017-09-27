@@ -7,13 +7,13 @@
 brew tap Homebrew/bundle
 
 # Install tools and apps
-brew bundle Brewfile
+./Brewfile.sh
 
 # initialize rbenv
 rbenv init
 
 # Install oh-my-zsh
-# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Apply modified osx defaults
 source .osx
@@ -23,10 +23,10 @@ dockutil --no-restart --remove all
 killall Dock
 
 # Create symlinks for dotfiles
-ln -s ~/dev/dotfiles/.zshrc ~/.zshrc
-ln -s ~/dev/dotfiles/.gitconfig ~/.gitconfig
-ln -s ~/dev/dotfiles/.gitignore_global ~/.gitignore_global
-ln -s ~/dev/dotfiles/sublime/Package\ Control.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Package\ Control.sublime-settings
-ln -s ~/dev/dotfiles/sublime/Default\ \(OSX\).sublime-keymap ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Default\ \(OSX\).sublime-keymap
-ln -s ~/dev/dotfiles/sublime/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
+ln -s ~/Development/dotfiles/.zshrc ~/.zshrc
+ln -s ~/Development/dotfiles/.gitconfig ~/.gitconfig
+ln -s ~/Development/dotfiles/.gitignore_global ~/.gitignore_global
+ln -s ~/Development/dotfiles/sublime/Package\ Control.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Package\ Control.sublime-settings
+ln -s ~/Development/dotfiles/sublime/Default\ \(OSX\).sublime-keymap ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Default\ \(OSX\).sublime-keymap
+ln -s ~/Development/dotfiles/sublime/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
 
