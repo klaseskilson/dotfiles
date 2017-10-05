@@ -14,7 +14,7 @@ ssh-add -A 2>/dev/null
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx)
+plugins=(osx)
 
 # User configuration
 
@@ -27,6 +27,7 @@ alias gc="git commit"
 alias gco="git checkout"
 alias gd="git diff"
 alias gdc="git diff --cached"
+alias gf="git fetch"
 alias gst="git status"
 alias gp="git push"
 alias gre="git rebase"
