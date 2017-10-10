@@ -38,6 +38,8 @@ alias gre="git rebase"
 alias finderShowHidden='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
 alias finderHideHidden='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
 
+alias vi="nvim"
+
 # open current pwd in finder using 'f' command
 alias f='open -a Finder ./'
 
@@ -49,3 +51,6 @@ export DEFAULT_USER=kalas
 
 # start autojump properly
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+# start rbenv
+eval "$(rbenv init -)"
