@@ -17,7 +17,7 @@ brew install yarn
 brew install neovim
 brew install rbenv
 brew install tree
-brew install autojump
+brew install z
 
 brew tap caskroom/cask
 brew install brew-cask
