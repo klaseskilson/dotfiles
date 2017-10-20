@@ -22,9 +22,11 @@ source .osx
 dockutil --no-restart --remove all
 killall Dock
 
+mkdir ~/.config/nvim
+
 # Create symlinks for dotfiles
 ln -s ~/Development/dotfiles/.zshrc ~/.zshrc
-ln -s ~/Development/dotfiles/.vimrc ~/.vimrc
+ln -s ~/Development/dotfiles/.vimrc ~/.config/nvim/init.vim
 ln -s ~/Development/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/Development/dotfiles/.gitignore_global ~/.gitignore_global
 ln -s ~/Development/dotfiles/sublime/Package\ Control.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Package\ Control.sublime-settings
