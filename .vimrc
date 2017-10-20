@@ -16,6 +16,7 @@ set shiftwidth=2	" Number of auto-indent spaces
 set smartindent	" Enable smart-indent
 set smarttab	" Enable smart-tabs
 set softtabstop=2	" Number of spaces per Tab
+set updatetime=250
 
 set cursorline
  
@@ -58,7 +59,18 @@ let g:airline_theme = 'solarized'
 let g:airline_solarized_bg='dark'
 let g:airline#extensions#ale#enabled = 1
 
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " make sure filetype-specific options are on
 filetype plugin on 
 filetype indent on
+
+" Remap tab to esc
+nnoremap <Tab> <Esc>
+vnoremap <Tab> <Esc>gV
+onoremap <Tab> <Esc>
+cnoremap <Tab> <C-C><Esc>
+inoremap <Tab> <Esc>`^
+inoremap <Leader><Tab> <Tab>
