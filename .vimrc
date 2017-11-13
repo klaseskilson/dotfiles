@@ -13,9 +13,11 @@ set incsearch	" Searches for strings incrementally
  
 set autoindent	" Auto-indent new lines
 set shiftwidth=2	" Number of auto-indent spaces
-set smartindent	" Enable smart-indent
-set smarttab	" Enable smart-tabs
+" set smartindent	" Enable smart-indent
+" set smarttab	" Enable smart-tabs
 set softtabstop=2	" Number of spaces per Tab
+set tabstop=2
+set expandtab
 set updatetime=250
 
 set cursorline
@@ -31,8 +33,29 @@ set backspace=indent,eol,start	" Backspace behaviour
 let mapleader = ","
 let g:mapleader = ","
 
-" Fast saving
-nmap <leader>w :w!<cr>
+" Fast saving and exiting
+nmap <leader>w :w<cr>
+nmap <leader>q :wq<cr>
+nmap <leader>e :q<cr>
+
+" easy copying to pb
+:nmap <leader>y "*y
+
+" Moving around
+" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+map <space> /
+map <c-space> ?
+nnoremap <leader>s :%s/\<<C-r><C-w>\>/
+
+" Disable highlight when <leader><cr> is pressed
+map <silent> <leader><cr> :noh<cr>
+
+" Useful mappings for managing tabs
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+map <leader>t<leader> :tabnext
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins
@@ -45,6 +68,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'slim-template/vim-slim'
 
 call plug#end()
 
@@ -68,9 +93,9 @@ filetype plugin on
 filetype indent on
 
 " Remap tab to esc
-nnoremap <Tab> <Esc>
-vnoremap <Tab> <Esc>gV
-onoremap <Tab> <Esc>
-cnoremap <Tab> <C-C><Esc>
-inoremap <Tab> <Esc>`^
-inoremap <Leader><Tab> <Tab>
+" nnoremap <Tab> <Esc>
+" vnoremap <Tab> <Esc>gV
+" onoremap <Tab> <Esc>
+" cnoremap <Tab> <C-C><Esc>
+" inoremap <Tab> <Esc>`^
+" inoremap <Leader><Tab> <Tab>
