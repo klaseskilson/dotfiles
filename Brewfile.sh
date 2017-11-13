@@ -18,6 +18,7 @@ brew install neovim
 brew install rbenv
 brew install tree
 brew install z
+brew install the_silver_searcher
 
 brew tap caskroom/cask
 brew install brew-cask
