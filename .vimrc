@@ -23,7 +23,17 @@ set updatetime=250
 set cursorline
  
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Advanced
+" Splitting settings
+set splitbelow
+set splitright
+
+" key mapping related to splitting
+nmap <leader>v :vsp<cr>
+nmap <C-S> :vsp<cr>
+nmap <C-J> <C-W><C-W>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Key mapping
 set ruler	" Show row and column ruler information
  
 set undolevels=1000	" Number of undo levels
@@ -37,9 +47,26 @@ let g:mapleader = ","
 nmap <leader>w :w<cr>
 nmap <leader>q :wq<cr>
 nmap <leader>e :q<cr>
+nmap <leader>f :Ex<cr>
 
-" easy copying to pb
-:nmap <leader>y "*y
+" Duplicate line using ,d
+nmap <leader>d yyp
+
+" Run spec in vagrant on current file
+" nmap <leader>rr map ! s:!vagrant ssh -c 'bundle exec r<cr>spec %:<C-r>=line('.')'<cr><cr>
+nmap <leader>r :!vagrant ssh -c 'bundle exec rspec %'<cr>
+
+" Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
+
+" Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
 
 " Moving around
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
@@ -56,6 +83,12 @@ map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 map <leader>t<leader> :tabnext
+
+" learn this goddammit
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins
@@ -86,6 +119,8 @@ let g:airline#extensions#ale#enabled = 1
 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
+" Align comments
+let g:NERDDefaultAlign = 'left'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " make sure filetype-specific options are on
