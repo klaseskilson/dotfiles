@@ -3,7 +3,7 @@
   excludesfile = ~/.gitignore_global
 [alias]
   unstage = reset HEAD --
-  last = log -1 HEAD
+  last = show -1 HEAD
   alias = config --get-regexp ^alias\\.
   pl = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --branches
   fp = push --force-with-lease
