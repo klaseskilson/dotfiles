@@ -42,6 +42,7 @@ alias finderHideHidden='defaults write com.apple.finder AppleShowAllFiles NO && 
 # Other aliases
 alias vi="nvim"
 alias be="bundle exec"
+alias vc="vagrant ssh -c"
 
 # open current pwd in finder using 'f' command
 alias f='open -a Finder ./'
