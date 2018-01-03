@@ -21,7 +21,51 @@ set expandtab
 set updatetime=250
 
 set cursorline
- 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Advanced
+" Display extra whitespace
+set list listchars=tab:»·,trail:·,nbsp:·
+
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag --literal --files-with-matches --nocolor --hidden -g "" %s'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+
+  if !exists(":Ag")
+    command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+    nnoremap \ :Ag<SPACE>
+  endif
+endif
+
+" Make it obvious where 80 characters is
+set textwidth=80
+set colorcolumn=+1
+
+" line number spacing
+set numberwidth=5
+
+" Tab completion
+" will insert tab at beginning of line,
+" will use completion if not at beginning
+set wildmode=list:longest,list:full
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <S-Tab> <c-n>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Splitting settings
 set splitbelow
@@ -32,14 +76,13 @@ nmap <leader>v :vsp<cr>
 nmap <C-S> :vsp<cr>
 nmap <C-J> <C-W><C-W>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Key mapping
-set ruler	" Show row and column ruler information
- 
-set undolevels=1000	" Number of undo levels
+set ruler " Show row and column ruler information
+
+set undolevels=1000 " Number of undo levels
 set backspace=indent,eol,start	" Backspace behaviour
 
-" Keyboard mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Key mapping
 let mapleader = ","
 let g:mapleader = ","
 
@@ -50,7 +93,7 @@ nmap <leader>e :q<cr>
 nmap <leader>f :Ex<cr>
 
 " Duplicate line using ,d
-nmap <leader>d yyp
+nmap <leader>d yyp==
 
 " Run spec in vagrant on current file
 " nmap <leader>rr map ! s:!vagrant ssh -c 'bundle exec r<cr>spec %:<C-r>=line('.')'<cr><cr>
@@ -89,6 +132,12 @@ nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
+
+" Switch between the last two files
+nnoremap <Leader><Leader> <c-^>
+
+" Run commands that require an interactive shell
+nnoremap <Leader>i :RunInInteractiveShell<space>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins
