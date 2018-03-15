@@ -8,6 +8,7 @@ brew tap Homebrew/bundle
 
 # Install tools and apps
 ./Brewfile.sh
+curl https://sh.rustup.rs -sSf | sh
 
 # initialize rbenv
 rbenv init
