@@ -23,10 +23,50 @@ set updatetime=250
 set cursorline
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Advanced
-" Display extra whitespace
-set list listchars=tab:»·,trail:·,nbsp:·
+" Plugins (this list is really too long now)
+call plug#begin('~/.local/share/nvim/plugged')
 
+" utilities
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'marcweber/vim-addon-manager'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'scrooloose/nerdcommenter'
+Plug 'sirver/ultisnips'
+
+" git and lint ant such
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'w0rp/ale'
+
+" colorscheme and looks
+Plug 'altercation/vim-colors-solarized'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" syntax and plugins
+Plug 'slim-template/vim-slim'
+Plug 'cespare/vim-toml'
+Plug 'ekalinin/dockerfile.vim'
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'isruslan/vim-es6'
+Plug 'honza/vim-snippets'
+Plug 'fatih/vim-go'
+Plug 'rust-lang/rust.vim'
+Plug 'kchmck/vim-coffee-script'
+Plug 'tpope/vim-rails'
+Plug 'vim-ruby/vim-ruby'
+
+call plug#end()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Colors
+syntax enable
+set background=dark
+colorscheme solarized
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Advanced
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
   " Use Ag over Grep
@@ -59,7 +99,7 @@ set wildmode=list:longest,list:full
 function! InsertTabWrapper()
     let col = col('.') - 1
     if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
+        return "\<c-j>"
     else
         return "\<c-p>"
     endif
@@ -87,6 +127,11 @@ nmap <leader>v :vsp<cr>
 nmap <C-S> :vsp<cr>
 nmap <C-K> <C-W><C-W>
 
+" utilsnip config
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 " Fast saving and exiting
 nmap <leader>w :w<cr>
 nmap <leader>q :wq<cr>
@@ -97,8 +142,7 @@ nmap <leader>f :Ex<cr>
 nmap <leader>d yyp==
 
 " Run spec in vagrant on current file
-" nmap <leader>rr map ! s:!vagrant ssh -c 'bundle exec r<cr>spec %:<C-r>=line('.')'<cr><cr>
-nmap <leader>r :!vagrant ssh -c 'bundle exec rspec %'<cr>
+au FileType ruby nmap <leader>r :!vagrant ssh -c 'bundle exec rspec %'<cr>
 
 " Copy to clipboard
 vnoremap  <leader>y  "+y
@@ -144,25 +188,6 @@ nnoremap <Leader>i :RunInInteractiveShell<space>
 nnoremap <leader>b :Gblame<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugins
-call plug#begin('~/.local/share/nvim/plugged') 
-
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'w0rp/ale'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'scrooloose/nerdcommenter'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-Plug 'slim-template/vim-slim'
-Plug 'cespare/vim-toml'
-Plug 'ekalinin/dockerfile.vim'
-Plug 'mxw/vim-jsx'
-
-call plug#end()
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin configs
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
@@ -179,14 +204,22 @@ let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 'left'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" make sure filetype-specific options are on
-filetype plugin on 
+" File-type specific options
+filetype plugin on
 filetype indent on
 
-" Remap tab to esc
-" nnoremap <Tab> <Esc>
-" vnoremap <Tab> <Esc>gV
-" onoremap <Tab> <Esc>
-" cnoremap <Tab> <C-C><Esc>
-" inoremap <Tab> <Esc>`^
-" inoremap <Leader><Tab> <Tab>
+" Setup Go support
+autocmd FileType go setlocal tabstop=4 shiftwidth=4 expandtab
+
+" Display extra whitespace
+autocmd FileType ruby set list listchars=tab:»·,trail:·,nbsp:·
+autocmd FileType rust set list listchars=tab:»·,trail:·,nbsp:·
+autocmd FileType javascript set list listchars=tab:»·,trail:·,nbsp:·
+
+" Rust settings
+let g:rustfmt_autosave = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" activate snippets!
+" autocmd FileType go set list listchars=trail:·
+call vam#ActivateAddons(['vim-snippets', 'UltiSnips'])
