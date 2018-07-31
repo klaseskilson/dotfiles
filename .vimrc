@@ -19,8 +19,8 @@ set softtabstop=2	" Number of spaces per Tab
 set tabstop=2
 set expandtab
 set updatetime=250
-
 set cursorline
+set noswapfile
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins (this list is really too long now)
@@ -30,8 +30,10 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'marcweber/vim-addon-manager'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary'
 Plug 'sirver/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'tpope/vim-surround'
 
 " git and lint ant such
 Plug 'airblade/vim-gitgutter'
@@ -50,12 +52,14 @@ Plug 'ekalinin/dockerfile.vim'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'isruslan/vim-es6'
-Plug 'honza/vim-snippets'
 Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
+Plug 'flowtype/vim-flow'
+Plug 'leafgarland/typescript-vim'
+Plug 'ianks/vim-tsx'
 
 call plug#end()
 
@@ -87,7 +91,7 @@ endif
 " Make it obvious where 80 characters is
 set textwidth=80
 set colorcolumn=+1
-highlight ColorColumn ctermbg=0
+" highlight ColorColumn ctermbg=0
 
 " line number spacing
 set numberwidth=5
@@ -136,7 +140,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 nmap <leader>w :w<cr>
 nmap <leader>q :wq<cr>
 nmap <leader>e :q<cr>
-nmap <leader>f :Ex<cr>
+nmap <leader>f :Explore<cr>
 
 " Duplicate line using ,d
 nmap <leader>d yyp==
