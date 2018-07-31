@@ -20,6 +20,7 @@ plugins=(osx)
 
 source $ZSH/oh-my-zsh.sh
 source ~/Development/dotfiles/paths.sh
+source ~/Development/dotfiles/exports.sh
 
 # Git aliases
 alias ga="git add"
@@ -58,3 +59,5 @@ export DEFAULT_USER=kalas
 
 # start rbenv
 eval "$(rbenv init -)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
