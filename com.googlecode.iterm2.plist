@@ -225,6 +225,8 @@
 	</dict>
 	<key>Default Bookmark Guid</key>
 	<string>C03673F7-CB67-496D-94C9-4DDEA0C422D7</string>
+	<key>DimBackgroundWindows</key>
+	<false/>
 	<key>DimOnlyText</key>
 	<false/>
 	<key>DisableFullscreenTransparency</key>
@@ -365,7 +367,7 @@
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>NSFontPanelAttributes</key>
-	<string>1, 0</string>
+	<string>1, 1</string>
 	<key>NSNavLastRootDirectory</key>
 	<string>~/Development/dotfiles</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
@@ -407,15 +409,17 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>1409 110 445 452 0 0 1920 1177 </string>
+	<string>2020 137 445 318 0 0 2560 1417 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>760 800 400 129 0 0 2560 1440 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>970 786 620 392 0 0 2560 1440 </string>
+	<key>NSWindow Frame SessionsPreferences</key>
+	<string>269 126 606 469 0 0 2560 1417 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>184 416 796 473 0 0 2560 1440 </string>
+	<string>661 944 796 473 0 0 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 2560 1440 0 0 2560 1417 </string>
+	<string>0 0 1920 1200 0 0 1920 1177 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -594,7 +598,7 @@
 				<real>1</real>
 			</dict>
 			<key>Blinking Cursor</key>
-			<false/>
+			<true/>
 			<key>Blur</key>
 			<false/>
 			<key>Bold Color</key>
@@ -616,12 +620,16 @@
 			<string></string>
 			<key>Cursor Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.51685798168182373</real>
+				<real>0.7557830810546875</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.50962930917739868</real>
+				<real>0.74570597330729183</real>
 				<key>Red Component</key>
-				<real>0.44058024883270264</real>
+				<real>0.66005055745442687</real>
 			</dict>
 			<key>Cursor Guide Color</key>
 			<dict>
@@ -1141,11 +1149,15 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-12-13T14:38:58Z</date>
+	<date>2018-04-25T11:43:09Z</date>
 	<key>SUSendProfileInfo</key>
+	<false/>
+	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
 	<true/>
+	<key>ShowPaneTitles</key>
+	<false/>
 	<key>SplitPaneDimmingAmount</key>
 	<real>0.11108774038461541</real>
 	<key>TabStyle</key>
@@ -1160,5 +1172,9 @@
 	<integer>0</integer>
 	<key>iTerm Version</key>
 	<string>3.1.5</string>
+	<key>kCPKSelectionViewPreferredModeKey</key>
+	<integer>1</integer>
+	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
+	<false/>
 </dict>
 </plist>
