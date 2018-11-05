@@ -21,6 +21,7 @@ set expandtab
 set updatetime=250
 set cursorline
 set noswapfile
+set nowrap " dont wrap lines
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins (this list is really too long now)
@@ -96,10 +97,11 @@ set colorcolumn=+1
 " line number spacing
 set numberwidth=5
 
+set wildmode=list:longest,list:full
+
 " Tab completion
 " will insert tab at beginning of line,
 " will use completion if not at beginning
-set wildmode=list:longest,list:full
 function! InsertTabWrapper()
     let col = col('.') - 1
     if !col || getline('.')[col - 1] !~ '\k'
@@ -142,8 +144,11 @@ nmap <leader>q :wq<cr>
 nmap <leader>e :q<cr>
 nmap <leader>f :Explore<cr>
 
-" Duplicate line using ,d
+" Fast duplication and deletion
 nmap <leader>d yyp==
+nmap <C-W> dw
+nmap <C-B> db
+nmap <C-L> dd
 
 " Run spec in vagrant on current file
 au FileType ruby nmap <leader>r :!vagrant ssh -c 'bundle exec rspec %'<cr>
