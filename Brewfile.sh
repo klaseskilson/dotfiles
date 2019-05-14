@@ -19,6 +19,8 @@ brew install rbenv
 brew install tree
 brew install z
 brew install the_silver_searcher
+brew install ctags
+brew install elixir
 
 brew tap caskroom/cask
 brew install brew-cask
@@ -46,6 +48,7 @@ brew cask install vlc
 brew cask install postgres
 
 brew tap homebrew/versions
+brew tap homebrew/services
 
 # Remove outdated versions from the cellar
 brew cleanup
