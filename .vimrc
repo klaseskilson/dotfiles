@@ -23,6 +23,9 @@ set cursorline
 set noswapfile
 set nowrap " dont wrap lines
 
+" mouse magic
+set mouse=a
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins (this list is really too long now)
 call plug#begin('~/.local/share/nvim/plugged')
@@ -35,6 +38,8 @@ Plug 'tpope/vim-commentary'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
+Plug 'andrewradev/splitjoin.vim'
 
 " git and lint ant such
 Plug 'airblade/vim-gitgutter'
@@ -61,6 +66,13 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'flowtype/vim-flow'
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
+Plug 'hashivim/vim-terraform'
+Plug 'elixir-editors/vim-elixir'
+Plug 'slashmili/alchemist.vim'
+
+" LSP and friends
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
 
 call plug#end()
 
@@ -79,7 +91,6 @@ if executable('ag')
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag --literal --files-with-matches --nocolor --hidden -g "" %s'
-
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 
@@ -131,7 +142,7 @@ let g:mapleader = ","
 " key mapping related to splitting
 nmap <leader>v :vsp<cr>
 nmap <C-S> :vsp<cr>
-nmap <C-K> <C-W><C-W>
+nnoremap <C-K> <C-W><C-W>
 
 " utilsnip config
 let g:UltiSnipsExpandTrigger="<c-j>"
@@ -146,12 +157,8 @@ nmap <leader>f :Explore<cr>
 
 " Fast duplication and deletion
 nmap <leader>d yyp==
-nmap <C-W> dw
 nmap <C-B> db
 nmap <C-L> dd
-
-" Run spec in vagrant on current file
-au FileType ruby nmap <leader>r :!vagrant ssh -c 'bundle exec rspec %'<cr>
 
 " Copy to clipboard
 vnoremap  <leader>y  "+y
@@ -165,11 +172,14 @@ nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
-" Moving around
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 map <space> /
 map <c-space> ?
+
+" search and replace
 nnoremap <leader>s :%s/\<<C-r><C-w>\>/
+" search current word
+nnoremap <leader>S :Ag <C-r><C-w><cr>
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
@@ -180,12 +190,6 @@ map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 map <leader>t<leader> :tabnext
-
-" learn this goddammit
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
 
 " Switch between the last two files
 nnoremap <Leader><Leader> <c-^>
@@ -217,11 +221,7 @@ let g:NERDDefaultAlign = 'left'
 filetype plugin on
 filetype indent on
 
-" Setup Go support
-autocmd FileType go setlocal tabstop=4 shiftwidth=4 expandtab
-
 " Display extra whitespace
-autocmd FileType ruby set list listchars=tab:»·,trail:·,nbsp:·
 autocmd FileType rust set list listchars=tab:»·,trail:·,nbsp:·
 autocmd FileType javascript set list listchars=tab:»·,trail:·,nbsp:·
 
