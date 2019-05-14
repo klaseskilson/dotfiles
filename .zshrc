@@ -48,6 +48,18 @@ alias vc="vagrant ssh -c"
 # open current pwd in finder using 'f' command
 alias f='open -a Finder ./'
 
+# make sure ctags works as expected
+alias ctags="$(brew --prefix)/bin/ctags"
+
+# add ECS run alias
+alias ecs-run="docker run -i -v ~/.aws:/root/.aws:ro -e AWS_PROFILE -e AWS_DEFAULT_REGION=eu-west-1 edalen/ecs-run"
+
+# docker alias
+alias dc="docker-compose"
+
+# rspec
+alias rspec_changed_files="bundle exec rspec `git diff --name-only develop | ag spec`"
+
 # make sure "cd ..<TAB>" works as expected
 zstyle ':completion:*' special-dirs true
 
