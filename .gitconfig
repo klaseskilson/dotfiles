@@ -8,9 +8,19 @@
   pl = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --branches
   fp = push --force-with-lease
   co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
+	pnb = push -u origin HEAD
 [user]
-  signingkey = DFD6795F09FDF07E
+	signingkey = 621796B7DC97B768
   name = Klas Eskilson
   email = klas.eskilson@gmail.com
 [credential]
   helper = osxkeychain
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[web]
+	browser = open
+[gpg]
+	program = gpg
