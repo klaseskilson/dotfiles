@@ -1,8 +1,6 @@
 " General
-set number	" Show line numbers
 set linebreak	" Break lines at word (requires Wrap lines)
 set showbreak=+++	" Wrap-broken line prefix
-set textwidth=100	" Line wrap (number of cols)
 set showmatch	" Highlight matching brace
 set visualbell	" Use visual bell (no beeping)
 
@@ -19,23 +17,32 @@ set softtabstop=2	" Number of spaces per Tab
 set tabstop=2
 set expandtab
 set updatetime=250
-set cursorline
+set nocursorline
 set noswapfile
 set nowrap " dont wrap lines
 
 " mouse magic
 set mouse=a
 
+" line number magic
+:set number relativenumber
+
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+:augroup END
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins (this list is really too long now)
 call plug#begin('~/.local/share/nvim/plugged')
 
 " utilities
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'marcweber/vim-addon-manager'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-commentary'
-Plug 'sirver/ultisnips'
+Plug 'marcweber/vim-addon-manager'
+" Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
@@ -44,12 +51,13 @@ Plug 'andrewradev/splitjoin.vim'
 " git and lint ant such
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 
 " colorscheme and looks
-Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'jeffkreeftmeijer/vim-dim'
+Plug 'arcticicestudio/nord-vim'
 
 " syntax and plugins
 Plug 'slim-template/vim-slim'
@@ -68,7 +76,30 @@ Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
 Plug 'hashivim/vim-terraform'
 Plug 'elixir-editors/vim-elixir'
-Plug 'slashmili/alchemist.vim'
+" Plug 'slashmili/alchemist.vim'
+Plug 'udalov/kotlin-vim'
+Plug 'keith/swift.vim'
+
+" Prettier and friends
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'branch': 'release/1.x',
+  \ 'for': [
+    \ 'javascript',
+    \ 'typescript',
+    \ 'css',
+    \ 'less',
+    \ 'scss',
+    \ 'json',
+    \ 'graphql',
+    \ 'markdown',
+    \ 'vue',
+    \ 'lua',
+    \ 'php',
+    \ 'python',
+    \ 'ruby',
+    \ 'html',
+    \ 'swift' ] }
 
 " LSP and friends
 Plug 'prabirshrestha/async.vim'
@@ -80,7 +111,7 @@ call plug#end()
 " Colors
 syntax enable
 set background=dark
-colorscheme solarized
+colorscheme nord
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Advanced
@@ -145,15 +176,14 @@ nmap <C-S> :vsp<cr>
 nnoremap <C-K> <C-W><C-W>
 
 " utilsnip config
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" let g:UltiSnipsExpandTrigger="<c-j>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " Fast saving and exiting
 nmap <leader>w :w<cr>
 nmap <leader>q :wq<cr>
 nmap <leader>e :q<cr>
-nmap <leader>f :Explore<cr>
 
 " Fast duplication and deletion
 nmap <leader>d yyp==
@@ -180,6 +210,9 @@ map <c-space> ?
 nnoremap <leader>s :%s/\<<C-r><C-w>\>/
 " search current word
 nnoremap <leader>S :Ag <C-r><C-w><cr>
+" go to definition
+nnoremap <leader>gg :ALEGoToDefinition<cr>
+nnoremap <leader>gv :ALEGoToDefinitionInVSplit<cr>
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
@@ -189,7 +222,7 @@ map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
-map <leader>t<leader> :tabnext
+map <leader>t<leader> :tabnext<cr>
 
 " Switch between the last two files
 nnoremap <Leader><Leader> <c-^>
@@ -200,16 +233,34 @@ nnoremap <Leader>i :RunInInteractiveShell<space>
 " Git tools
 nnoremap <leader>b :Gblame<CR>
 
+" Fast .vimrc editing
+nnoremap <leader>ccc :e ~/.vimrc<CR>
+nnoremap <leader>ccr :so ~/.vimrc<CR>
+
+" make prettier
+nmap <Leader>mp <Plug>(Prettier)
+nmap <Leader>af :ALEFix<cr>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin configs
 " Use deoplete.
+set runtimepath+=~/.local/share/nvim/plugged/deoplete.nvim/
 let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option({
+      \ 'num_process': 4,
+      \ 'auto_complete_delay': 500,
+      \ })
+set completeopt=menuone,noinsert
 
 " config Airline
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'solarized'
 let g:airline_solarized_bg='dark'
+
+" ALE configuration, Error and warning signs.
 let g:airline#extensions#ale#enabled = 1
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -224,11 +275,11 @@ filetype indent on
 " Display extra whitespace
 autocmd FileType rust set list listchars=tab:»·,trail:·,nbsp:·
 autocmd FileType javascript set list listchars=tab:»·,trail:·,nbsp:·
+" autocmd FileType go set list listchars=trail:·
 
 " Rust settings
 let g:rustfmt_autosave = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " activate snippets!
-" autocmd FileType go set list listchars=trail:·
-call vam#ActivateAddons(['vim-snippets', 'UltiSnips'])
+" call vam#ActivateAddons(['vim-snippets', 'UltiSnips'])

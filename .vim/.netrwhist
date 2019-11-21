@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/kalas/Development/dotfiles'
+let g:netrw_dirhist_2='/Users/kalas/Development/bonito/.git'
+let g:netrw_dirhist_3='/Users/kalas/Development/bonito/.git/hooks'
+let g:netrw_dirhist_4='/Users/kalas/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/graphql-pro-1.10.7'
+let g:netrw_dirhist_5='/Users/kalas/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/graphql-pro-1.10.7/lib'
+let g:netrw_dirhist_6='/Users/kalas/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/graphql-pro-1.10.7/lib/graphql'
+let g:netrw_dirhist_7='/Users/kalas/.rbenv/versions/2.6.5/lib/ruby/gems/2.6.0/gems/graphql-pro-1.10.7/lib/graphql/pro'

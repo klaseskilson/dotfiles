@@ -6,3 +6,12 @@ if executable('typescript-language-server')
         \ 'whitelist': ['typescript'],
         \ })
 endif
+
+let g:ale_fixers = {
+\   'typescript': [
+\       'prettier',
+\       'eslint',
+\   ],
+\}
+
+let g:ale_fix_on_save = 1
