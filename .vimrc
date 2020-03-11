@@ -42,6 +42,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-commentary'
 Plug 'marcweber/vim-addon-manager'
+Plug 'mileszs/ack.vim'
 " Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
@@ -66,9 +67,8 @@ Plug 'ekalinin/dockerfile.vim'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'isruslan/vim-es6'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'rust-lang/rust.vim'
-Plug 'kchmck/vim-coffee-script'
 Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
 Plug 'flowtype/vim-flow'
@@ -125,10 +125,8 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 
-  if !exists(":Ag")
-    command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-    nnoremap \ :Ag<SPACE>
-  endif
+  let g:ackprg = 'ag --vimgrep --smart-case'
+  nnoremap \ :Ack<SPACE>
 endif
 
 " Make it obvious where 80 characters is
@@ -167,6 +165,7 @@ set backspace=indent,eol,start	" Backspace behaviour
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key mapping
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = ","
 let g:mapleader = ","
 
@@ -202,14 +201,10 @@ nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
-
 " search and replace
 nnoremap <leader>s :%s/\<<C-r><C-w>\>/
 " search current word
-nnoremap <leader>S :Ag <C-r><C-w><cr>
+nnoremap <leader>S :Ack <C-r><C-w><cr>
 " go to definition
 nnoremap <leader>gg :ALEGoToDefinition<cr>
 nnoremap <leader>gv :ALEGoToDefinitionInVSplit<cr>
@@ -240,6 +235,12 @@ nnoremap <leader>ccr :so ~/.vimrc<CR>
 " make prettier
 nmap <Leader>mp <Plug>(Prettier)
 nmap <Leader>af :ALEFix<cr>
+
+" neat jump-to-definition shortcuts
+" ctrl \ for opening definition in new tab
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+" alt ] for opening definition in new split
+map <‘> :sp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin configs
@@ -275,7 +276,6 @@ filetype indent on
 " Display extra whitespace
 autocmd FileType rust set list listchars=tab:»·,trail:·,nbsp:·
 autocmd FileType javascript set list listchars=tab:»·,trail:·,nbsp:·
-" autocmd FileType go set list listchars=trail:·
 
 " Rust settings
 let g:rustfmt_autosave = 1
