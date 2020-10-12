@@ -48,6 +48,7 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'andrewradev/splitjoin.vim'
+Plug 'mattn/emmet-vim'
 
 " git and lint ant such
 Plug 'airblade/vim-gitgutter'
@@ -104,6 +105,9 @@ Plug 'prettier/vim-prettier', {
 " LSP and friends
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
+
+" fancy markdown preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 call plug#end()
 

@@ -1,11 +1,13 @@
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
+export DISABLE_UNTRACKED_FILES_DIRTY="true"
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+ZSH_THEME="klas"
 
 # setup ssh keys for this session
 ssh-add -A 2>/dev/null
@@ -16,24 +18,33 @@ ssh-add -A 2>/dev/null
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(osx)
 
-# User configuration
-
 source $ZSH/oh-my-zsh.sh
 source ~/Development/dotfiles/paths.sh
 source ~/Development/dotfiles/exports.sh
+
+# set username to surpress terminal naming output
+export DEFAULT_USER=kalas
+
+# disable aws output
+prompt_aws(){}
 
 # Git aliases
 alias ga="git add"
 alias gb="git branch"
 alias gc="git commit"
+alias gcf="git diff --name-only develop"
 alias gco="git checkout"
 alias gd="git diff"
 alias gdc="git diff --cached"
 alias gf="git fetch"
-alias gst="git status"
 alias gp="git push"
 alias gre="git rebase"
-alias gcf="git diff --name-only develop"
+alias gst="git status"
+alias gr="git rebase"
+
+gri() {
+  git rebase -i HEAD~$1
+}
 
 #   finderShowHidden:   Show hidden files in Finder
 #   finderHideHidden:   Hide hidden files in Finder
@@ -64,24 +75,13 @@ alias rspec_changed_files="bundle exec rspec \`gcf -- spec\`"
 # make sure "cd ..<TAB>" works as expected
 zstyle ':completion:*' special-dirs true
 
-# set username to surpress terminal naming output
-export DEFAULT_USER=kalas
-
 # start z
 . $(brew --prefix)/etc/profile.d/z.sh
 
 # start rbenv
 eval "$(rbenv init -)"
 
+# start fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/kalas/Development/mykiss-web/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/kalas/Development/mykiss-web/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/kalas/Development/mykiss-web/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/kalas/Development/mykiss-web/node_modules/tabtab/.completions/sls.zsh
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /Users/kalas/Development/mykiss-web/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/kalas/Development/mykiss-web/node_modules/tabtab/.completions/slss.zsh
+export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"

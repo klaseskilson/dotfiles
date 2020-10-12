@@ -25,3 +25,5 @@
 	browser = open
 [gpg]
 	program = gpg
+[rebase]
+	autosquash = true

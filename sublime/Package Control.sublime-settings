@@ -18,11 +18,14 @@
 		"ExpandRegion",
 		"Git",
 		"GitGutter",
+		"GitHub Flavored Markdown Preview",
 		"Gitignore",
 		"Go To Definition",
+		"JSON Reindent",
 		"LaTeXTools",
-		"Markdown Preview",
+		"MarkdownPreview",
 		"Package Control",
+		"Pretty JSON",
 		"Rails Developer Snippets",
 		"Ruby Slim",
 		"SCSS",
@@ -36,6 +39,7 @@
 		"Theme - Dark Material",
 		"Theme - Spacegray",
 		"TodoReview",
+		"TypeScript Syntax",
 		"x86 and x86_64 Assembly",
 		"Zen Tabs"
 	]
