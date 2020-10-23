@@ -7,7 +7,7 @@ export DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="klas"
+ZSH_THEME="agnoster"
 
 # setup ssh keys for this session
 ssh-add -A 2>/dev/null
@@ -19,8 +19,8 @@ ssh-add -A 2>/dev/null
 plugins=(osx)
 
 source $ZSH/oh-my-zsh.sh
-source ~/Development/dotfiles/paths.sh
-source ~/Development/dotfiles/exports.sh
+source ~/dev/dotfiles/paths.sh
+source ~/dev/dotfiles/exports.sh
 
 # set username to surpress terminal naming output
 export DEFAULT_USER=kalas
@@ -75,13 +75,15 @@ alias rspec_changed_files="bundle exec rspec \`gcf -- spec\`"
 # make sure "cd ..<TAB>" works as expected
 zstyle ':completion:*' special-dirs true
 
-# start z
 . $(brew --prefix)/etc/profile.d/z.sh
 
 # start rbenv
 eval "$(rbenv init -)"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
 # start fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
