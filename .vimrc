@@ -40,14 +40,13 @@ call plug#begin('~/.local/share/nvim/plugged')
 " utilities
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tpope/vim-commentary'
 Plug 'marcweber/vim-addon-manager'
 Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sensible'
-" Plug 'sirver/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
+Plug 'honza/vim-snippets'
 Plug 'andrewradev/splitjoin.vim'
 Plug 'mattn/emmet-vim'
 
@@ -59,7 +58,7 @@ Plug 'dense-analysis/ale'
 " colorscheme and looks
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'jeffkreeftmeijer/vim-dim'
+" Plug 'jeffkreeftmeijer/vim-dim'
 Plug 'arcticicestudio/nord-vim'
 
 " syntax and plugins
@@ -78,7 +77,6 @@ Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
 Plug 'hashivim/vim-terraform'
 Plug 'elixir-editors/vim-elixir'
-" Plug 'slashmili/alchemist.vim'
 Plug 'udalov/kotlin-vim'
 Plug 'keith/swift.vim'
 
@@ -142,7 +140,8 @@ set colorcolumn=+1
 " line number spacing
 set numberwidth=5
 
-set wildmode=list:longest,list:full
+" adjust commandline autocomplete
+set wildmode=list:full
 
 " Tab completion
 " will insert tab at beginning of line,
@@ -284,7 +283,3 @@ autocmd FileType javascript set list listchars=tab:»·,trail:·,nbsp:·
 
 " Rust settings
 let g:rustfmt_autosave = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" activate snippets!
-" call vam#ActivateAddons(['vim-snippets', 'UltiSnips'])
