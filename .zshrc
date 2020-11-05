@@ -19,11 +19,11 @@ ssh-add -A 2>/dev/null
 plugins=(osx)
 
 source $ZSH/oh-my-zsh.sh
-source ~/dev/dotfiles/paths.sh
-source ~/dev/dotfiles/exports.sh
+source ~/Development/dotfiles/paths.sh
+source ~/Development/dotfiles/exports.sh
 
 # set username to surpress terminal naming output
-export DEFAULT_USER=kalas
+export DEFAULT_USER=klaseskilson
 
 # disable aws output
 prompt_aws(){}
