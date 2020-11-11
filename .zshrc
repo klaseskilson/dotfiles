@@ -69,21 +69,35 @@ alias ecs-run="docker run -i -v ~/.aws:/root/.aws:ro -e AWS_PROFILE -e AWS_DEFAU
 # docker alias
 alias dc="docker-compose"
 
-# rspec
-alias rspec_changed_files="bundle exec rspec \`gcf -- spec\`"
-
 # make sure "cd ..<TAB>" works as expected
 zstyle ':completion:*' special-dirs true
 
+# ------------------------------------------------------------------------------ 
+# start things
+# start z.sh
 . $(brew --prefix)/etc/profile.d/z.sh
 
 # start rbenv
 eval "$(rbenv init -)"
+
+# start pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
+# start nvm
+source ~/Development/dotfiles/nvm.sh
+
 # start fzf
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# add Billogram's victoria autocomplete
+eval "$(_VICTORIA_COMPLETE=source_zsh victoria)"
+eval "$(_V_COMPLETE=source_zsh v)"
+
 export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
+
+# Created by `userpath` on 2020-11-09 12:18:21
+export PATH="$PATH:/Users/klaseskilson/.local/bin"
+
+export PATH="$HOME/.poetry/bin:$PATH"
