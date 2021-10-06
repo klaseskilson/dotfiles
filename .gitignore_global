@@ -43,4 +43,9 @@ Thumbs.db
 # ctags
 tags
 
+# ignore ignore files
 .ignore
+
+# Language rests
+.nvmrc
+.python-version
