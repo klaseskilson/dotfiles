@@ -38,7 +38,7 @@ set mouse=a
 call plug#begin('~/.local/share/nvim/plugged')
 
 " utilities
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'marcweber/vim-addon-manager'
 Plug 'mileszs/ack.vim'
@@ -49,6 +49,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'honza/vim-snippets'
 Plug 'andrewradev/splitjoin.vim'
 Plug 'mattn/emmet-vim'
+Plug 'jiangmiao/auto-pairs'
 
 " git and lint ant such
 Plug 'airblade/vim-gitgutter'
@@ -79,6 +80,7 @@ Plug 'hashivim/vim-terraform'
 Plug 'elixir-editors/vim-elixir'
 Plug 'udalov/kotlin-vim'
 Plug 'keith/swift.vim'
+Plug 'jparise/vim-graphql'
 
 " Prettier and friends
 Plug 'prettier/vim-prettier', {
@@ -133,8 +135,8 @@ if executable('ag')
 endif
 
 " Make it obvious where 80 characters is
-set textwidth=80
-set colorcolumn=+1
+set textwidth=0
+" set colorcolumn=+1
 " highlight ColorColumn ctermbg=0
 
 " line number spacing
@@ -142,20 +144,37 @@ set numberwidth=5
 
 " adjust commandline autocomplete
 set wildmode=list:full
+set completeopt=menuone,noinsert
 
+" COC stuff
 " Tab completion
-" will insert tab at beginning of line,
-" will use completion if not at beginning
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<c-j>"
-    else
-        return "\<c-p>"
-    endif
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <S-Tab> <c-n>
+
+" Use <c-n> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-n> coc#refresh()
+endif
+
+" GoTo code navigation.
+nmap gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Add format command to call COC formatting
+command! -nargs=0 Format :call CocAction('format')
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Splitting settings
@@ -191,7 +210,6 @@ nmap <leader>e :q<cr>
 " Fast duplication and deletion
 nmap <leader>d yyp==
 nmap <C-B> db
-nmap <C-L> dd
 
 " Copy to clipboard
 vnoremap  <leader>y  "+y
@@ -223,6 +241,8 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 map <leader>t<leader> :tabnext<cr>
 
+" General
+set linebreak	" Break lines at word (requires Wrap lines)
 " Switch between the last two files
 nnoremap <Leader><Leader> <c-^>
 
@@ -230,7 +250,7 @@ nnoremap <Leader><Leader> <c-^>
 nnoremap <Leader>i :RunInInteractiveShell<space>
 
 " Git tools
-nnoremap <leader>b :Gblame<CR>
+nnoremap <leader>b :Git blame<CR>
 
 " Fast .vimrc editing
 nnoremap <leader>ccc :e ~/.vimrc<CR>
@@ -248,15 +268,6 @@ map <‘> :sp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin configs
-" Use deoplete.
-set runtimepath+=~/.local/share/nvim/plugged/deoplete.nvim/
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option({
-      \ 'num_process': 4,
-      \ 'auto_complete_delay': 500,
-      \ })
-set completeopt=menuone,noinsert
-
 " config Airline
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'solarized'
@@ -283,3 +294,6 @@ autocmd FileType javascript set list listchars=tab:»·,trail:·,nbsp:·
 
 " Rust settings
 let g:rustfmt_autosave = 1
+
+" unbreak python 3 provider when using virtualenv
+let g:python3_host_prog = '/Users/klaseskilson/.neovim-python-env/bin/python'
