@@ -11,7 +11,7 @@ brew tap Homebrew/bundle
 curl https://sh.rustup.rs -sSf | sh
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash
 
 # initialize rbenv
 rbenv init
