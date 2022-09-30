@@ -165,16 +165,14 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ ]
 
-" Faster removals
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" Add `:Format` command to format current buffer
+command! -nargs=0 Format :call CocActionAsync('format')
+" Formatting selected code.
+nmap f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format)
 
-" Use <c-n> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-n> coc#refresh()
-endif
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " GoTo code navigation.
 nmap gd <Plug>(coc-definition)
@@ -182,8 +180,16 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Add format command to call COC formatting
-command! -nargs=0 Format :call CocAction('format')
+" Use <c-n> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-n> coc#refresh()
+endif
+
+" Faster removals
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Splitting settings
