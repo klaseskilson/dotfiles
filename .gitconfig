@@ -10,6 +10,7 @@
   co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
 	pnb = push -u origin HEAD
 	pll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --branches --no-merges origin/develop..
+	ful = !git commit --fixup=$(git rev-parse --short --verify HEAD)
 [user]
 	signingkey = 621796B7DC97B768
   name = Klas Eskilson
@@ -27,3 +28,9 @@
 	program = gpg
 [rebase]
 	autosquash = true
+[commit]
+	gpgsign = true
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
