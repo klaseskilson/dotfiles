@@ -11,6 +11,11 @@ alias gp="git push"
 alias gre="git rebase"
 alias gst="git status"
 alias gr="git rebase"
+# fixup last commit
+# In git: alias.ful !git commit --fixup=$(git rev-parse --short --verify HEAD)
+alias gful="git commit --fixup=$(git rev-parse --short --verify HEAD)"
+# rebase fixups
+alias grfu="git rebase --autosquash $(git rev-parse --short HEAD)..HEAD"
 
 gri() {
   git rebase -i HEAD~$1

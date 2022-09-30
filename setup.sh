@@ -11,6 +11,8 @@ brew tap Homebrew/bundle
 curl https://sh.rustup.rs -sSf | sh
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash
+
 # initialize rbenv
 rbenv init
 
@@ -31,6 +33,8 @@ ln -s "$(pwd)/.zshrc" ~/.zshrc
 ln -s "$(pwd)/.tmux.conf" ~/.tmux.conf
 ln -s "$(pwd)/.tmux/scripts" ~/.tmux/scripts
 ln -s "$(pwd)/.vimrc" ~/.config/nvim/init.vim
+ln -s "$(pwd)/.vimrc" ~/.vimrc
+ln -s "$(pwd)/.vim" ~/.config/nvim
 ln -s "$(pwd)/.gitconfig" ~/.gitconfig
 ln -s "$(pwd)/.gitignore_global" ~/.gitignore_global
 ln -s "$(pwd)/sublime/Package\ Control.sublime-settings" ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Package\ Control.sublime-settings

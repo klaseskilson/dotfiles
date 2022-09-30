@@ -16,7 +16,7 @@ ssh-add -A 2>/dev/null
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(osx poetry)
+plugins=(macos poetry)
 
 source $ZSH/oh-my-zsh.sh
 source ~/Developer/dotfiles/paths.sh
@@ -52,13 +52,22 @@ source ~/Development/dotfiles/nvm.sh
 # start fzf
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# ------------------------------------------------------------------------------ 
 # add Billogram's victoria autocomplete
 eval "$(_VICTORIA_COMPLETE=source_zsh victoria)"
 eval "$(_V_COMPLETE=source_zsh v)"
 
+# ------------------------------------------------------------------------------ 
+# path adjustments
 export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
-
-# Created by `userpath` on 2020-11-09 12:18:21
 export PATH="$PATH:/Users/klaseskilson/.local/bin"
-
+export PATH="$PYENV_ROOT/shims:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+
+# Stop `brew doctor` from complaining about pyenv *-config scripts
+# https://github.com/pyenv/pyenv/issues/106#issuecomment-94921352
+alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform
