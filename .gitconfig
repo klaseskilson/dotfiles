@@ -12,9 +12,9 @@
 	pll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --branches --no-merges origin/develop..
 	ful = !git commit --fixup=$(git rev-parse --short --verify HEAD)
 [user]
-	signingkey = 621796B7DC97B768
+	signingkey = 7418E87BD2EA2BC2
   name = Klas Eskilson
-  email = klas.eskilson@gmail.com
+  email = klas@billogram.com
 [credential]
   helper = osxkeychain
 [filter "lfs"]
