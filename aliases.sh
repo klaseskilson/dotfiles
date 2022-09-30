@@ -48,3 +48,6 @@ alias dc="docker-compose"
 alias e="exit"
 
 alias pbunserialize='pbpaste | php -r "echo json_encode(unserialize(stream_get_contents(STDIN)));" | jq'
+
+# Ask for confirmation before it nukes all your files
+alias rm="rm -I"
