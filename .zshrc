@@ -42,6 +42,10 @@ gri() {
   git rebase -i HEAD~$1
 }
 alias gdc="git diff --cached"
+zz() {
+  z $1
+  tmux rename-window $1
+}
 
 # Tab completion
 autoload -U bashcompinit; bashcompinit
