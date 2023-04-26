@@ -1,5 +1,6 @@
 # Path to oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export DOTFILES="$HOME/Developer/klaseskilson/dotfiles"
 
 ZSH_THEME="typewritten"
 TYPEWRITTEN_CURSOR="terminal"
@@ -14,7 +15,8 @@ source $ZSH/oh-my-zsh.sh
 
 # PATH fixing
 export PATH="/opt/homebrew/opt/node@14/bin:$PATH"
-export PATH="$PATH:/Users/klaseskilson/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$DOTFILES/scripts"
 
 # Misc exports
 export GPG_TTY=$(tty)
@@ -28,12 +30,18 @@ alias rm="rm -I"
 alias pbunserialize='pbpaste | php -r "echo json_encode(unserialize(stream_get_contents(STDIN)));" | jq'
 alias e="exit"
 alias f='open -a Finder ./'
-alias loadavg="uptime | awk '{split(substr($0, index($0, \"load\")), a, \":\"); print a[2]}'"
+tbdc() {
+  osascript -e 'tell application "Tunnelblick" to disconnect all'
+}
+tbc() {
+  osascript -e 'tell application "Tunnelblick" to connect (get name of configuration 2)'
+}
 
 # Git aliases
 gri() {
   git rebase -i HEAD~$1
 }
+alias gdc="git diff --cached"
 
 # Tab completion
 autoload -U bashcompinit; bashcompinit
