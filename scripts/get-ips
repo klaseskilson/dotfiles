@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Get the names and IP addresses of all non-localhost network interfaces
+activeinterfaces=$(for i in $(ifconfig -lu); do if ifconfig $i | grep -v "127.0.0.1" | grep -q "inet "; then echo -n "$i "; fi; done)
+
+# Output the interface names and IP addresses in the desired format
+for interface in $activeinterfaces; do
+  echo -n "$interface:$(ifconfig $interface | grep "inet " | awk '{print $2}') "
+done
+echo "" 

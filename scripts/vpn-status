@@ -1,0 +1,19 @@
+#!/bin/bash
+
+vpnstatus=$(osascript $DOTFILES/scripts/tunnelblick.applescript)
+
+if [[ $vpnstatus =~ "CONNECTED" ]]; then
+   echo "VPN✓ "
+fi 
+if [[ $vpnstatus =~ "SLEEP" ]]; then
+   echo "VPN~ "
+fi 
+if [[ $vpnstatus =~ "AUTH" ]]; then
+   echo "VPN… "
+fi 
+if [[ $vpnstatus =~ "GET_CONFIG" ]]; then
+   echo "VPN… "
+fi 
+if [[ $vpnstatus =~ "DISCONNECTING" ]]; then
+   echo "VPN† "
+fi 
