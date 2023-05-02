@@ -21,18 +21,20 @@ set number
 set clipboard+=unnamedplus
 set wildmode=longest,list
 set spell
-set updatetime=300
+set updatetime=100
 set signcolumn=no
 set splitbelow
 set splitright
 set ruler " Show row and column ruler information
 set undolevels=1000 " Number of undo levels
+set termguicolors
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1  # legacy gui setting
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntax stuff
 syntax enable
 set background=dark
-set numberwidth=5
+set numberwidth=7
 filetype plugin on
 filetype indent on
  
@@ -42,10 +44,10 @@ let mapleader = ","
 let g:mapleader = ","
 
 " System clipboard
-vnoremap  <leader>y "+y
-nnoremap  <leader>Y "+yg_
-nnoremap  <leader>y "+y
-nnoremap  <leader>yy "+yy
+vnoremap <leader>y "+y
+nnoremap <leader>Y "+yg_
+nnoremap <leader>y "+y
+nnoremap <leader>yy "+yy
 nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>p "+p
@@ -58,7 +60,9 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 map <leader>t<leader> :tabnext<cr>
 
-nmap <leader>d yyp==  " fast duplication
+nmap <leader>d yyp== " fast duplication
+nmap <leader>e :q<cr> " close buffer
+nmap <C-s> :vsp<cr> " fast vertical split
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Customizations
@@ -74,6 +78,10 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep --smart-case'
   nnoremap \ :Ack<SPACE>
 endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COC bindings and configuration
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Bring in the ugliness
