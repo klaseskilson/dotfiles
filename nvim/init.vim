@@ -22,19 +22,18 @@ set clipboard+=unnamedplus
 set wildmode=longest,list
 set spell
 set updatetime=100
-set signcolumn=no
+set signcolumn=auto
 set splitbelow
 set splitright
 set ruler " Show row and column ruler information
 set undolevels=1000 " Number of undo levels
 set termguicolors
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1  # legacy gui setting
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntax stuff
 syntax enable
 set background=dark
-set numberwidth=7
+set numberwidth=4
 filetype plugin on
 filetype indent on
  
@@ -78,6 +77,10 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep --smart-case'
   nnoremap \ :Ack<SPACE>
 endif
+
+highlight! link SignColumn LineNr
+highlight link GitGutterChangeLineNr Underlined
+let g:gitgutter_set_sign_backgrounds = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COC bindings and configuration
