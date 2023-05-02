@@ -78,6 +78,7 @@ if executable('ag')
   nnoremap \ :Ack<SPACE>
 endif
 
+" Pretty sign column for git stuff
 highlight! link SignColumn LineNr
 highlight link GitGutterChangeLineNr Underlined
 let g:gitgutter_set_sign_backgrounds = 1
