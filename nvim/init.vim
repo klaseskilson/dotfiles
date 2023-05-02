@@ -36,7 +36,11 @@ set background=dark
 set numberwidth=4
 filetype plugin on
 filetype indent on
- 
+
+" Load gruvbox theme on enter
+let g:gruvbox_contrast_dark = 'hard'
+autocmd vimenter * ++nested colorscheme gruvbox
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shortcuts and key bindings
 let mapleader = ","
@@ -96,6 +100,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'mileszs/ack.vim'
+Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
