@@ -14,7 +14,7 @@ source $ZSH/oh-my-zsh.sh
 . /opt/homebrew/etc/profile.d/z.sh
 
 # PATH fixing
-export PATH="/opt/homebrew/opt/node@14/bin:$PATH"
+export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$DOTFILES/scripts"
 
