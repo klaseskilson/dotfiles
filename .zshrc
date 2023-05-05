@@ -6,7 +6,7 @@ ZSH_THEME="typewritten"
 TYPEWRITTEN_CURSOR="terminal"
 
 # Which plugins would you like to load?
-plugins=(tmux git kubectl pyenv poetry)
+plugins=(macos tmux git kubectl pyenv poetry)
 
 source $ZSH/oh-my-zsh.sh
 
