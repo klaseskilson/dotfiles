@@ -30,6 +30,9 @@ alias rm="rm -I"
 alias pbunserialize='pbpaste | php -r "echo json_encode(unserialize(stream_get_contents(STDIN)));" | jq'
 alias e="exit"
 alias f='open -a Finder ./'
+alias ghpr='gh pr view --json url | jq ".url" | tr -d "\""'
+alias ghprcp='ghpr | pbcopy'
+alias ghpro='open $(ghpr)'
 tbdc() {
   osascript -e 'tell application "Tunnelblick" to disconnect all'
 }
