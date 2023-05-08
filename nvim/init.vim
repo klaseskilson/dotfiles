@@ -38,18 +38,6 @@ filetype plugin on
 filetype indent on
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Colors
-" Load gruvbox theme on enter
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_transparent_bg = '1'
-autocmd vimenter * ++nested colorscheme gruvbox
-
-" Workaround for creating transparent bg
-autocmd SourcePost * highlight Normal     ctermbg=NONE guibg=NONE
-        \ |    highlight LineNr     ctermbg=NONE guibg=NONE
-        \ |    highlight SignColumn ctermbg=NONE guibg=NONE
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shortcuts and key bindings
 let mapleader = ","
 let g:mapleader = ","
@@ -98,6 +86,37 @@ let g:gitgutter_set_sign_backgrounds = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COC bindings and configuration
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Lightline config
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ],
+      \             [ 'cocstatus', 'currentfunction' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status',
+      \   'currentfunction': 'CocCurrentFunction'
+      \ },
+      \ }
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Colors
+" Load gruvbox theme on enter
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_transparent_bg = '1'
+autocmd vimenter * ++nested colorscheme gruvbox
+
+" Workaround for creating transparent bg
+autocmd SourcePost * highlight Normal     ctermbg=NONE guibg=NONE
+        \ |    highlight LineNr     ctermbg=NONE guibg=NONE
+        \ |    highlight SignColumn ctermbg=NONE guibg=NONE
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Bring in the ugliness
