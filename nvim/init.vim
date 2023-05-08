@@ -93,27 +93,35 @@ endfunction
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Lightline config
+" Lightline configuration
 let g:lightline = {
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified' ],
-      \             [ 'cocstatus', 'currentfunction' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status',
-      \   'currentfunction': 'CocCurrentFunction'
-      \ },
-      \ }
+    \   'active': {
+    \     'left': [
+    \       [ 'mode', 'paste' ],
+    \       [ 'readonly', 'filename', 'modified' ],
+    \       [ 'cocstatus', 'currentfunction' ]
+    \     ],
+    \     'right': [
+    \       [ 'lineinfo' ],
+    \       [ 'percent' ],
+    \       [ 'gitbranch', 'fileformat', 'fileencoding', 'filetype' ]
+    \     ]
+    \   },
+    \   'component_function': {
+    \     'cocstatus': 'coc#status',
+    \     'currentfunction': 'CocCurrentFunction',
+    \     'gitbranch': 'FugitiveHead'
+    \   }
+    \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colors
-" Load gruvbox theme on enter
+" Load Gruvbox theme on enter
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_transparent_bg = '1'
 autocmd vimenter * ++nested colorscheme gruvbox
 
-" Workaround for creating transparent bg
+" Workaround for creating transparent background
 autocmd SourcePost * highlight Normal     ctermbg=NONE guibg=NONE
         \ |    highlight LineNr     ctermbg=NONE guibg=NONE
         \ |    highlight SignColumn ctermbg=NONE guibg=NONE
