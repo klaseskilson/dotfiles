@@ -1,5 +1,9 @@
 {
   "pyright.enable": true,
   "python.formatting.provider": "black",
-  "coc.preferences.formatOnSaveFiletypes":  [".py"]
+  "python.linting.ruffEnabled": true,
+  "python.linting.mypyEnabled": true,
+  "[py]": {
+    "coc.preferences.formatOnSave": true
+  }
 }
