@@ -33,6 +33,8 @@ alias f='open -a Finder ./'
 alias ghpr='gh pr view --json url | jq ".url" | tr -d "\""'
 alias ghprcp='ghpr | pbcopy'
 alias ghpro='open $(ghpr)'
+
+# Tunnelblick aliases
 tbdc() {
   osascript -e 'tell application "Tunnelblick" to disconnect all'
 }
