@@ -3,6 +3,7 @@
   "python.formatting.provider": "black",
   "python.linting.ruffEnabled": true,
   "python.linting.mypyEnabled": true,
+  "python.formatting.blackArgs": ["--diff", "--quiet", "--fast"],
   "[py]": {
     "coc.preferences.formatOnSave": true
   }

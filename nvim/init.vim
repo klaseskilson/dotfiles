@@ -154,6 +154,13 @@ let g:lightline = {
     \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Language-specific
+aug python
+  au!
+  au BufWrite *.py call CocAction('format')
+aug END
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colors
 " Load Gruvbox theme on enter
 let g:gruvbox_contrast_dark = 'hard'
