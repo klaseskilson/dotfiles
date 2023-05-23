@@ -2,10 +2,27 @@
 export ZSH="$HOME/.oh-my-zsh"
 export DOTFILES="$HOME/Developer/klaseskilson/dotfiles"
 
+# Prompt style and configuration
 ZSH_THEME="typewritten"
 TYPEWRITTEN_CURSOR="terminal"
+TYPEWRITTEN_RELATIVE_PATH="adaptive"
+TYPEWRITTEN_COLORS="right_prompt_prefix:blue"
+TYPEWRITTEN_ARROW_SYMBOL="➜"
+display_kube_context() {
+  local tw_kube_context="$(kubectl config current-context 2> /dev/null)"
+  local tw_kube_namespace="$(kubectl config view --minify -o jsonpath='{..namespace}' 2> /dev/null)"
 
-# Which plugins would you like to load?
+  if [[ $tw_kube_context != "" ]]; then
+    echo -n "\u2388 "
+    echo -n "$(basename $tw_kube_context)"
+    if [[ $tw_kube_namespace != "" ]]; then
+      echo -n ":$tw_kube_namespace"
+    fi
+  fi
+}
+TYPEWRITTEN_RIGHT_PROMPT_PREFIX_FUNCTION=display_kube_context
+
+# OH-MY-ZSH plugins
 plugins=(macos tmux git kubectl pyenv poetry)
 
 source $ZSH/oh-my-zsh.sh
