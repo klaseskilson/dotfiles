@@ -3,15 +3,39 @@
   "python.formatting.provider": "black",
   "python.linting.ruffEnabled": true,
   "python.linting.mypyEnabled": true,
-  "python.formatting.blackArgs": ["--diff", "--quiet", "--fast"],
+  "python.formatting.blackArgs": [
+    "--diff",
+    "--quiet",
+    "--fast"
+  ],
   "[py]": {
     "coc.preferences.formatOnSave": true
   },
   "languageserver": {
     "graphql": {
       "command": "graphql-lsp",
-      "args": ["server", "-m", "stream"],
-      "filetypes": ["typescript", "typescriptreact", "graphql"]
+      "args": [
+        "server",
+        "-m",
+        "stream"
+      ],
+      "filetypes": [
+        "typescript",
+        "typescriptreact",
+        "graphql"
+      ]
+    },
+    "terraform": {
+      "command": "terraform-ls",
+      "args": [
+        "serve"
+      ],
+      "filetypes": [
+        "terraform",
+        "tf"
+      ],
+      "initializationOptions": {},
+      "settings": {}
     }
   }
 }
