@@ -3,17 +3,19 @@
 vpnstatus=$(osascript $DOTFILES/scripts/tunnelblick.applescript)
 
 if [[ $vpnstatus =~ "CONNECTED" ]]; then
-   echo "VPN✓ "
-fi 
-if [[ $vpnstatus =~ "SLEEP" ]]; then
-   echo "VPN~ "
-fi 
-if [[ $vpnstatus =~ "AUTH" ]]; then
-   echo "VPN… "
-fi 
-if [[ $vpnstatus =~ "GET_CONFIG" ]]; then
-   echo "VPN… "
-fi 
-if [[ $vpnstatus =~ "DISCONNECTING" ]]; then
-   echo "VPN† "
+  echo "VPN✓ "
+elif [[ $vpnstatus =~ "SLEEP" ]]; then
+  echo "VPN~ "
+elif [[ $vpnstatus =~ "AUTH" ]]; then
+  echo "VPN…✓ "
+elif [[ $vpnstatus =~ "GET_CONFIG" ]]; then
+  echo "VPN…✓  "
+elif [[ $vpnstatus =~ "DISCONNECTING" ]]; then
+  echo "VPN† "
+elif [[ $vpnstatus =~ "EXITING" ]]; then
+  echo "VPN⨯ "
+elif [[ $vpnstatus =~ "NOT_RUNNING" ]]; then
+  echo ""
+else
+  echo "VPN? ($vpnstatus)"
 fi 
