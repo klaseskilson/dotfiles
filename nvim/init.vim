@@ -149,7 +149,7 @@ let g:lightline = {
     \   'active': {
     \     'left': [
     \       [ 'mode', 'paste' ],
-    \       [ 'readonly', 'filename', 'modified' ],
+    \       [ 'readonly', 'relativefilename', 'modified' ],
     \       [ 'cocstatus', 'currentfunction' ]
     \     ],
     \     'right': [
@@ -161,9 +161,19 @@ let g:lightline = {
     \   'component_function': {
     \     'cocstatus': 'coc#status',
     \     'currentfunction': 'CocCurrentFunction',
-    \     'gitbranch': 'FugitiveHead'
+    \     'gitbranch': 'FugitiveHead',
+    \     'relativefilename': 'LightlineFilename'
     \   }
     \ }
+
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Copilot mapping
