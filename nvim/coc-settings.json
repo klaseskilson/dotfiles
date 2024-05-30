@@ -1,9 +1,11 @@
 {
   "pyright.enable": true,
-  "python.formatting.provider": "black",
+  "python.formatting.provider": "ruff",
+  "pyright.inlayHints.parameterTypes": false,
+  "pyright.inlayHints.variableTypes": false,
   "python.linting.ruffEnabled": true,
   "python.linting.mypyEnabled": true,
-  "python.formatting.blackArgs": [
+  "nothing python.linting.ruffArgs": [
     "--diff",
     "--quiet",
     "--fast"
