@@ -28,6 +28,7 @@ set splitright
 set ruler " Show row and column ruler information
 set undolevels=1000 " Number of undo levels
 set termguicolors
+set cursorline
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntax stuff
