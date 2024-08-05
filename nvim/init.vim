@@ -205,6 +205,7 @@ autocmd SourcePost * highlight Normal     ctermbg=NONE guibg=NONE
 " Bring in the ugliness
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -212,7 +213,10 @@ Plug 'github/copilot.vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'hashivim/vim-terraform'
 Plug 'itchyny/lightline.vim'
+Plug 'jellydn/hurl.nvim'
+Plug 'jparise/vim-graphql'
 Plug 'mileszs/ack.vim'
+Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
