@@ -14,11 +14,9 @@
   lt = describe --tags --abbrev=0
   dlt = !git pl $(git lt)..HEAD
 [user]
-	signingkey = 7418E87BD2EA2BC2
-  name = Klas Eskilson
-  email = klas@billogram.com
+	name = Klas Eskilson
 [credential]
-  helper = osxkeychain
+	helper = osxkeychain
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
