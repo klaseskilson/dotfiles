@@ -60,6 +60,10 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 map <leader>t<leader> :tabnext<cr>
 
+" NERDtree mappings
+nmap <leader>n :NERDTreeFind %<cr>
+nmap <leader>m :NERDTreeToggle<cr>
+
 nmap <leader>d yyp== " fast duplication
 nmap <leader>e :q<cr> " close buffer
 nmap <C-s> :vsp<cr> " fast vertical split
@@ -190,6 +194,10 @@ aug python
 aug END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Misc one-line configs
+let NERDTreeShowHidden=1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colors
 " Load Gruvbox theme on enter
 let g:gruvbox_contrast_dark = 'hard'
@@ -216,10 +224,29 @@ Plug 'itchyny/lightline.vim'
 Plug 'jellydn/hurl.nvim'
 Plug 'jparise/vim-graphql'
 Plug 'mileszs/ack.vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-context'
+Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 call plug#end()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Treesitter config
+lua << EOF
+  require'nvim-treesitter.configs'.setup {
+    -- A list of parser names, or "all" (the listed parsers MUST always be installed)
+    ensure_installed = { "c", "lua", "vim", "vimdoc", "yaml", "markdown", "markdown_inline", "terraform", "typescript", "javascript" },
+
+    -- Install parsers synchronously (only applied to `ensure_installed`)
+    sync_install = false,
+
+    -- Automatically install missing parsers when entering buffer
+    -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+    auto_install = true,
+  }
+EOF
+

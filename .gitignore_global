@@ -49,3 +49,6 @@ tags
 # Language rests
 .nvmrc
 .python-version
+
+.nvim
+.vim

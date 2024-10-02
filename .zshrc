@@ -20,25 +20,32 @@ display_kube_context() {
     fi
   fi
 }
-TYPEWRITTEN_RIGHT_PROMPT_PREFIX_FUNCTION=display_kube_context
+# TYPEWRITTEN_RIGHT_PROMPT_PREFIX_FUNCTION=display_kube_context
 
 # OH-MY-ZSH plugins
-plugins=(macos tmux git kubectl pyenv poetry)
+plugins=(macos tmux git kubectl keychain gpg-agent)
+
+zstyle :omz:plugins:keychain agents ssh,gpg
+zstyle :omz:plugins:keychain identities id_rsa 18B6DC2EBA84C6CD
 
 source $ZSH/oh-my-zsh.sh
-
 # Brew setup
+BREW_PREFIX=$(brew --prefix)
 . /opt/homebrew/etc/profile.d/z.sh
 
 # PATH fixing
-export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$DOTFILES/scripts"
+export PATH="$PATH:$BREW_PREFIX/opt/libpq/bin"
+
+export GEM_HOME=$HOME/.gem
+export PATH=$GEM_HOME/bin:$PATH
 
 # bring in NVM
 export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+  [ -s "$BREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$BREW_PREFIX/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "$BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Misc exports
 export GPG_TTY=$(tty)
@@ -76,6 +83,5 @@ zz() {
 
 # Tab completion
 autoload -U bashcompinit; bashcompinit
-eval "$(register-python-argcomplete pipx)"
-eval "$(_BILLODEV_COMPLETE=source_zsh billodev)"
-eval "$(_BD_COMPLETE=source_zsh bd)"
+
+eval "$($BREW_PREFIX/bin/mise activate zsh)"
