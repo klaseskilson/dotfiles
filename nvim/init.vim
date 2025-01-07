@@ -194,10 +194,10 @@ let g:copilot_no_tab_map = v:true
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Language-specific
-aug python
-  au!
-  au BufWrite *.py call CocAction('format')
-aug END
+" aug python
+"   au!
+"   au BufWrite *.py call CocAction('format')
+" aug END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc one-line configs
