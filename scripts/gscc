@@ -3,12 +3,12 @@
 # gscc = git show commit chooser
 
 # Present a list to choose a commit
-selected_hash=$(git log --pretty=format:"%C(auto)%h%Creset -%C(auto)%d%Creset %s (%C(green)%cr%Creset)" --color=always | fzf --ansi --preview 'git show --color=always --name-status --summary {1}; printf "\e[35m\n%*s\e[0m" "$(tput cols)" | tr " " "-"; git show --pretty="" --color=always {1}' --exit-0 | cut -d ' ' -f 1)
+selected_hash=$(git log --pretty=format:"%C(auto)%h%Creset -%C(auto)%d%Creset %s (%C(green)%cr%Creset)" --color=always "$@" | fzf --ansi --preview 'git show --color=always --name-status --summary {1}; printf "\e[35m\n%*s\e[0m" "$(tput cols)" | tr " " "-"; git show --pretty="" --color=always {1}' --exit-0 | cut -d ' ' -f 1)
 
 # See if something was selected and commit to that hash
 if [ -n "$selected_hash" ]; then
     git rev-parse $selected_hash | pbcopy
-    git show $selected_hash "$@"
+    git show $selected_hash
     echo "$selected_hash ($(git rev-parse $selected_hash))"
 else
     echo "No commit selected."
