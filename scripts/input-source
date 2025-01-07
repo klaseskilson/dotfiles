@@ -1,0 +1,13 @@
+#!/bin/bash
+
+layout=$(defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleSelectedInputSources | grep "KeyboardLayout Name" | awk -F' = ' '{print $2}' | tr -d '";')
+symbol="⌨"
+
+echo -n "$symbol "
+
+# Apply a rule to shorten or modify layout names
+case "$layout" in
+    "Swedish - Pro") echo "SE";;
+    # Add more rules as needed
+    *) echo "$layout";;  # If no specific rule, print the original layout
+esac
