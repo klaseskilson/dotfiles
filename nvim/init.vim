@@ -148,6 +148,12 @@ inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>
 inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
 inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 
+" Use <leader>qf to run quick fix
+nmap <leader>qf <Plug>(coc-fix-current)
+nmap <leader>qq <Plug>(coc-codeaction)
+nmap <leader>ql <Plug>(coc-codeaction-line)
+nmap <leader>qc <Plug>(coc-codeaction-cursor)
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Lightline configuration
 let g:lightline = {
