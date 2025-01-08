@@ -61,8 +61,8 @@ map <leader>tm :tabmove
 map <leader>t<leader> :tabnext<cr>
 
 " NERDtree mappings
-nmap <leader>n :NERDTreeFind %<cr>
-nmap <leader>m :NERDTreeToggle<cr>
+nmap <leader>n :NvimTreeFindFile<cr>
+nmap <leader>m :NvimTreeToggle<cr>
 
 nmap <leader>d yyp== " fast duplication
 nmap <leader>e :q<cr> " close buffer
@@ -232,15 +232,37 @@ Plug 'itchyny/lightline.vim'
 Plug 'jellydn/hurl.nvim'
 Plug 'jparise/vim-graphql'
 Plug 'mileszs/ack.vim'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-tree/nvim-tree.lua'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-context'
-Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 call plug#end()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Nvim-tree config
+lua << EOF
+  vim.g.loaded_netrw = 1
+  vim.g.loaded_netrwPlugin = 1
+  require("nvim-tree").setup({
+    sort = {
+      sorter = "case_sensitive",
+    },
+    view = {
+      width = 30,
+    },
+    renderer = {
+      group_empty = true,
+    },
+    filters = {
+      dotfiles = true,
+    },
+  })
+EOF
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Treesitter config
@@ -258,3 +280,4 @@ lua << EOF
   }
 EOF
 
+"
