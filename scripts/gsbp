@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# gsbp = git switch branch picker
+
+current=$(git branch --show-current)
+selected_branch=$(git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short) (%(committername), %(committerdate:short))' --color=always | fzf --ansi --preview 'git diff $current_branch {1} --color=always' --exit-0 | cut -d ' ' -f 1)
+
+if [ -n "$selected_branch" ]; then
+  git switch $selected_branch
+else
+  echo "No branch selected."
+fi
