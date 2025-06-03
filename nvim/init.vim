@@ -67,6 +67,7 @@ nmap <leader>m :NvimTreeToggle<cr>
 nmap <leader>d yyp== " fast duplication
 nmap <leader>e :q<cr> " close buffer
 nmap <C-s> :vsp<cr> " fast vertical split
+" nmap <C-t> :tabnew %<cr> " open file in new tab
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Customizations
@@ -254,12 +255,19 @@ lua << EOF
     },
     view = {
       width = 30,
+      adaptive_size = true,
     },
     renderer = {
       group_empty = true,
+      indent_width = 2,
+      icons = {
+        show = {
+          folder = false,
+        },
+      }
     },
     filters = {
-      dotfiles = true,
+      dotfiles = false,
     },
   })
 EOF
