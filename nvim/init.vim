@@ -189,7 +189,7 @@ endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Copilot mapping
-" Requires iTerm mapping: Shift-Enter: [13;2u (^Enter: [13;5u)
+" Requires iTerm mapping (Send Escape Sequence): Shift-Enter: [13;2u (^Enter: [13;5u)
 imap <silent><script><expr> <S-CR> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
 
