@@ -29,9 +29,8 @@ zstyle :omz:plugins:keychain agents ssh,gpg
 zstyle :omz:plugins:keychain identities id_rsa 18B6DC2EBA84C6CD
 
 source $ZSH/oh-my-zsh.sh
-# Brew setup
-BREW_PREFIX=$(brew --prefix)
-. /opt/homebrew/etc/profile.d/z.sh
+
+export BREW_PREFIX="$(brew --prefix)"
 
 # PATH fixing
 export PATH="$PATH:$HOME/.local/bin"
@@ -41,11 +40,12 @@ export PATH="$PATH:$BREW_PREFIX/opt/libpq/bin"
 
 export GEM_HOME=$HOME/.gem
 export PATH=$GEM_HOME/bin:$PATH
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # bring in NVM
-export NVM_DIR="$HOME/.nvm"
-  [ -s "$BREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$BREW_PREFIX/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "$BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+#   [ -s "$BREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$BREW_PREFIX/opt/nvm/nvm.sh"  # This loads nvm
+#   [ -s "$BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Misc exports
 export GPG_TTY=$(tty)
@@ -85,3 +85,4 @@ zz() {
 autoload -U bashcompinit; bashcompinit
 
 eval "$($BREW_PREFIX/bin/mise activate zsh)"
+eval "$(zoxide init zsh)"
