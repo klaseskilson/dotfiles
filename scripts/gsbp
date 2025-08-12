@@ -3,7 +3,16 @@
 # gsbp = git switch branch picker
 
 current=$(git branch --show-current)
-selected_branch=$(git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short) (%(committername), %(committerdate:short))' --color=always | fzf --ansi --preview 'git diff $current_branch {1} --color=always' --exit-0 | cut -d ' ' -f 1)
+selected_branch=$(
+  git for-each-ref \
+    --sort=-committerdate refs/heads/ \
+    --format=$'%(if)%(HEAD)%(then)*%(else) %(end)\t%(refname:short)\t%(committername), %(committerdate:short)' \
+    --color=always \
+  | column -ts $'\t' \
+  | fzf --ansi --delimiter=$'\s\s+' --with-nth=1,2,3 \
+        --preview 'git diff --color=always '"$current"'..{2}' --exit-0 \
+  | awk '{print $1}'
+)
 
 if [ -n "$selected_branch" ]; then
   git switch $selected_branch
