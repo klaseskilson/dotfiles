@@ -16,6 +16,7 @@
 	dlt = !git pl $(git lt)..HEAD
 [user]
 	name = Klas Eskilson
+  email = klas.eskilson@doors.live
 [credential]
 	helper = osxkeychain
 [filter "lfs"]
