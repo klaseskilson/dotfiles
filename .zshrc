@@ -80,6 +80,7 @@ zz() {
   z $1
   tmux rename-window $1
 }
+s() { source "$DOTFILES/scripts/switch-context" "$@"; }
 
 # Tab completion
 autoload -U bashcompinit; bashcompinit

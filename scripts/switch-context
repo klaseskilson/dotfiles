@@ -1,0 +1,28 @@
+#!/usr/bin/env zsh
+# Sourced by `s` wrapper in .zshrc. Must not `exit` — use `return`.
+# Usage: s <name> [tool]
+#   tool: c|claude, o|opencode, or any command (passthrough)
+
+if [[ -z "$1" ]]; then
+  echo "usage: s <name> [tool]" >&2
+  return 1
+fi
+
+local _sc_name="$1"
+local _sc_tool="$2"
+
+wt switch -c "$_sc_name" || return $?
+
+if [[ -n "$TMUX" ]]; then
+  tmux rename-window "$_sc_name"
+
+  if [[ -n "$_sc_tool" ]]; then
+    case "$_sc_tool" in
+      c) _sc_tool="claude" ;;
+      o) _sc_tool="opencode" ;;
+    esac
+    tmux split-window -h -b -c "#{pane_current_path}" "$_sc_tool"
+  fi
+fi
+
+unset _sc_name _sc_tool
