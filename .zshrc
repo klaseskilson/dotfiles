@@ -67,11 +67,6 @@ export GEM_HOME=$HOME/.gem
 export PATH=$GEM_HOME/bin:$PATH
 export XDG_CONFIG_HOME="$HOME/.config"
 
-# bring in NVM
-# export NVM_DIR="$HOME/.nvm"
-#   [ -s "$BREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$BREW_PREFIX/opt/nvm/nvm.sh"  # This loads nvm
-#   [ -s "$BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
 # Misc exports
 export GPG_TTY=$(tty)
 export EDITOR=nvim
@@ -87,14 +82,6 @@ alias f='open -a Finder ./'
 alias ghpr='gh pr view --json url | jq ".url" | tr -d "\""'
 alias ghprcp='ghpr | pbcopy'
 alias ghpro='open $(ghpr)'
-
-# Tunnelblick aliases
-tbdc() {
-  osascript -e 'tell application "Tunnelblick" to disconnect all'
-}
-tbc() {
-  osascript -e 'tell application "Tunnelblick" to connect (get name of configuration 2)'
-}
 
 # Git aliases
 gri() {
