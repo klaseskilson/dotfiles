@@ -23,13 +23,38 @@ display_kube_context() {
 # TYPEWRITTEN_RIGHT_PROMPT_PREFIX_FUNCTION=display_kube_context
 
 # OH-MY-ZSH plugins
-plugins=(macos tmux git kubectl keychain gpg-agent)
+plugins=(macos tmux git kubectl keychain gpg-agent fzf-tab)
 
+# Load oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+
+# Keychain configuration
 zstyle :omz:plugins:keychain agents ssh,gpg
 zstyle :omz:plugins:keychain identities id_rsa 18B6DC2EBA84C6CD
 
-source $ZSH/oh-my-zsh.sh
+# fzf-tab configuration (tmux + suggested)
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup # Enable tmux popup
+# disable sort when completing `git checkout`
+# set descriptions format to enable group support
+# NOTE: don't use escape sequences (like '%F{red}%d%f') here, fzf-tab will ignore them
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+# custom fzf flags
+# NOTE: fzf-tab does not follow FZF_DEFAULT_OPTS by default
+zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
+# To make fzf-tab follow FZF_DEFAULT_OPTS.
+# NOTE: This may lead to unexpected behavior since some flags break this plugin. See Aloxaf/fzf-tab#455.
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+# switch group using `<` and `>`
+zstyle ':fzf-tab:*' switch-group '<' '>'
 
+
+# Useful exports
 export BREW_PREFIX="$(brew --prefix)"
 
 # PATH fixing
@@ -82,8 +107,13 @@ zz() {
 }
 s() { source "$DOTFILES/scripts/switch-context" "$@"; }
 
-# Tab completion
-autoload -U bashcompinit; bashcompinit
-
+# Bring in tools
 eval "$($BREW_PREFIX/bin/mise activate zsh)"
 eval "$(zoxide init zsh)"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/klas/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
