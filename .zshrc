@@ -103,4 +103,19 @@ autoload -Uz compinit
 compinit
 # End of Docker CLI completions
 
+_s_complete() {
+  local -a branches tools
+  case $CURRENT in
+    2)
+      branches=(${(f)"$(git branch --format='%(refname:short)' 2>/dev/null)"})
+      _describe 'branch' branches
+      ;;
+    3)
+      tools=('c:claude' 'o:opencode' 'claude' 'opencode')
+      _describe 'tool' tools
+      ;;
+  esac
+}
+compdef _s_complete s
+
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi

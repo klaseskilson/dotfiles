@@ -19,7 +19,8 @@ set nowrap " don't wrap lines
 set mouse=a
 set number
 set clipboard+=unnamedplus
-set wildmode=longest,list
+set wildmenu
+set wildmode=longest:full,full
 set spell
 set updatetime=100
 set signcolumn=auto
@@ -287,5 +288,3 @@ lua << EOF
     auto_install = true,
   }
 EOF
-
-"
